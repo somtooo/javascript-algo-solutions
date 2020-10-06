@@ -13,4 +13,36 @@ function isStringUnique(word){
     return "String is unique"
 }
 
-console.log(isStringUnique("madd"))
+// Given two strings, write a method to decide if one is a permutation of the
+// other.
+
+function isStringAPermutation(wordA, wordB){
+    let theCharactersOfWordA = {}
+    let theCharactersOfWordB = {}
+    let count = 1
+
+    for(character of wordA){
+        if(character in theCharactersOfWordA){
+            theCharactersOfWordA[character]++
+            continue
+        }
+        theCharactersOfWordA[character] = count
+    }
+   
+    for(character of wordB){
+        if(character in theCharactersOfWordB){
+            theCharactersOfWordB[character]++
+            continue
+        }
+        theCharactersOfWordB[character] = count
+    }
+
+    for(character of wordB){
+        if((theCharactersOfWordB[character] != theCharactersOfWordA[character])){
+            return "String is not a permutation"
+        } 
+    }
+    return "String is a permutation"
+}
+
+console.log(isStringAPermutation("abc","acc"))
