@@ -59,3 +59,32 @@ function replaceSpacesInString(str){
 }
 
 
+// Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation
+// is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
+// EXAMPLE
+// Input: Tact Coa
+// Output: True (permutations: "taco cat". "atco cta". etc.) 
+
+function isPalindromePermutation(str){
+    let count = 1
+    let numberOfDuplicates = 0
+    characterCount = {}
+    for(character of str){
+        if(character in characterCount){
+            if(characterCount[character] > 2){
+                return false
+            }
+            characterCount[character]++
+            numberOfDuplicates =  numberOfDuplicates + 2
+            continue
+        }
+
+        characterCount[character] = count
+    }
+
+    return ((str.length-1) === numberOfDuplicates) ? true:false
+
+    
+}
+
+console.log(isPalindromePermutation("tactcoa"))
