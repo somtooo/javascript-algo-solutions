@@ -87,4 +87,44 @@ function isPalindromePermutation(str){
     
 }
 
-console.log(isPalindromePermutation("tactcoa"))
+// There are three types of edits that can be performed on strings: insert a character,
+// remove a character, or replace a character. Given two strings, write a function to check if they are
+// one edit (or zero edits) away. 
+
+function isOneAway(wordA, wordB){
+    let wordACharacterCount = {}
+    let wordBCharacterCount = {}
+    let count = 1
+    let errorTracker = 0
+
+    for(character of wordA){
+        if(character in wordACharacterCount){
+            wordACharacterCount[character]++
+            continue
+        }
+
+        wordACharacterCount[character] = count
+    }
+
+    for(character of wordB){
+        if(character in wordBCharacterCount){
+            wordBCharacterCount[character]++
+            continue
+        }
+
+        wordBCharacterCount[character] = count
+    }
+
+    for(character in wordACharacterCount){
+        if(character in wordBCharacterCount){
+            errorTracker = (wordBCharacterCount[character] - wordACharacterCount[character]) 
+            + errorTracker
+        }else{
+            errorTracker = errorTracker + 1
+        }
+        
+    }
+    return (errorTracker > 1) ? false: true
+
+}
+
