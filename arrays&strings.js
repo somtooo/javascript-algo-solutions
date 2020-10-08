@@ -128,3 +128,39 @@ function isOneAway(wordA, wordB){
 
 }
 
+// Implement a method to perform basic string compression using the counts
+// of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the
+// "compressed" string would not become smaller than the original string, your method should return
+// the original string. You can assume the string has only uppercase and lowercase letters (a - z). 
+
+function compressString(str){
+
+    let countArray = []
+    let count =1
+    let index = -1
+
+    for(character of str){
+        if(str.charAt(index) === character){
+            count = count +1
+            if(index === str.length-2){
+                countArray.push(count)
+            }
+        }
+        else{
+            if(index > -1){
+                countArray.push(count)
+                count = 1
+            }
+            countArray.push(character)
+        }        
+
+        index = index + 1
+        
+    }
+
+    return countArray.join("")
+   
+
+}
+
+console.log(compressString("aabcccccaaa"))
